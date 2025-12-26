@@ -2,26 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Power BI Report</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Dashboard</title>
+
     <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+        body {
+            font-family: Arial, sans-serif;
         }
+
+        .menu {
+            margin-bottom: 12px;
+        }
+
+        .menu button {
+            padding: 8px 16px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .report-container {
+            width: 100%;
+            height: 90vh;
+        }
+
         iframe {
             width: 100%;
-            height: 100vh;
+            height: 100%;
             border: none;
+            display: none; /* hide by default */
+        }
+
+        iframe.active {
+            display: block;
         }
     </style>
 </head>
+
 <body>
 
-<iframe
-title="Process Leave" width="1000" height="1000" src="https://app.powerbi.com/view?r=eyJrIjoiOGNjOTdlZTAtYTJlNS00ZDAwLTk5MjMtN2QxYzQ3ZjM2MTc0IiwidCI6Ijg2MzczYjFkLWY4YWItNDlmMS1iZDYyLWFmZTMzMGYxMTM5MyIsImMiOjEwfQ%3D%3D" frameborder="0" allowFullScreen="true">
-</iframe>
+    <!-- Buttons -->
+    <div class="menu">
+        <button onclick="showReport('leave')">Leave Report</button>
+        <button onclick="showReport('work')">Work Assign</button>
+    </div>
+
+    <!-- Reports -->
+    <div class="report-container">
+        <iframe
+            id="LeaveReport"
+            class="active"
+            src="https://app.powerbi.com/view?r=eyJrIjoiOGNjOTdlZTAtYTJlNS00ZDAwLTk5MjMtN2QxYzQ3ZjM2MTc0IiwidCI6Ijg2MzczYjFkLWY4YWItNDlmMS1iZDYyLWFmZTMzMGYxMTM5MyIsImMiOjEwfQ%3D%3D">
+        </iframe>
+
+        <iframe
+            id="WorkReport"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZTdlM2EyNzAtMGMxNi00YzY4LWE1MDMtMTUzNzU4MTNmODJhIiwidCI6Ijg2MzczYjFkLWY4YWItNDlmMS1iZDYyLWFmZTMzMGYxMTM5MyIsImMiOjEwfQ%3D%3D">
+        </iframe>
+    </div>
+
+    <!-- Script -->
+    <script>
+        function showReport(report) {
+            document.getElementById("LeaveReport").classList.remove("active");
+            document.getElementById("WorkReport").classList.remove("active");
+
+            if (report === "leave") {
+                document.getElementById("LeaveReport").classList.add("active");
+            } else {
+                document.getElementById("WorkReport").classList.add("active");
+            }
+        }
+    </script>
 
 </body>
 </html>
